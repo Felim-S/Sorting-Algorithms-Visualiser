@@ -24,9 +24,10 @@ public class Panel extends JPanel {
     BubbleSort bubbleSort = new BubbleSort();
     InsertionSort insertionSort = new InsertionSort();
     SelectionSort selectionSort = new SelectionSort();
+    ShellSort shellSort = new ShellSort();
 
     /** Selected Sorting Algorithm **/
-    public final SortingAlgorithm algorithm = bubbleSort;
+    public final SortingAlgorithm algorithm = shellSort;
 
     public Panel() {
         instance = this;

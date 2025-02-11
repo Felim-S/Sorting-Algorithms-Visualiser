@@ -30,9 +30,10 @@ public class TestClass {
         SelectionSort selectionSort = new SelectionSort();
         BubbleSort bubbleSort = new BubbleSort();
         InsertionSort insertionSort = new InsertionSort();
+        ShellSort shellSort = new ShellSort();
 
         /* SELECTED ALGORITHM */
-        SortingAlgorithm algorithm = bubbleSort;
+        SortingAlgorithm algorithm = shellSort;
 
         /* Integer Collections */
 
