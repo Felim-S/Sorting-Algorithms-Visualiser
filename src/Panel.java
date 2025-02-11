@@ -69,6 +69,9 @@ public class Panel extends JPanel {
         for(int i = 0; i < ARRAY_SIZE; i++){
             g2d.fillRect(i * GRID_SIZE,HEIGHT - (array[i]) * GRID_SIZE,GRID_SIZE,(array[i]) * GRID_SIZE);
         }
+        g2d.setColor(new Color(30, 255, 22));
+        g2d.setFont(new Font("Arial", Font.PLAIN, 50));
+        g2d.drawString(algorithm.getClass().getSimpleName(), 0, 40);
     }
 
     public void reset() {
