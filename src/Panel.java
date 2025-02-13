@@ -17,7 +17,6 @@ public class Panel extends JPanel {
     public static final int HEIGHT = 500;
     public static final int GRID_SIZE = 10;
     public static final int ARRAY_SIZE = WIDTH / GRID_SIZE;
-    public static Random rand = new Random();
     Integer[] array = new Integer[ARRAY_SIZE];
 
     Bogosort bogosort = new Bogosort();

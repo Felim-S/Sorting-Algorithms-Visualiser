@@ -1,7 +1,6 @@
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 /* BOGOSORT - O(N*N!) */
 
@@ -18,6 +17,7 @@ public class Bogosort extends SortingAlgorithm {
             for (int i = 0; i < input.size() - 1; i++) {
                 if (comparator.compare(input.get(i), input.get(i + 1)) > 0) {
                     sorted = false;
+                    break;
                 }
             }
         }
@@ -36,6 +36,7 @@ public class Bogosort extends SortingAlgorithm {
             for (int i = 0; i < input.length - 1; i++) {
                 if (comparator.compare(input[i], input[i + 1]) > 0) {
                     sorted = false;
+                    break;
                 }
             }
         }
