@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Panel extends JPanel {
@@ -24,10 +25,20 @@ public class Panel extends JPanel {
     SelectionSort selectionSort = new SelectionSort();
     ShellSort shellSort = new ShellSort();
 
+    ArrayList<SortingAlgorithm> algorithms = new ArrayList<SortingAlgorithm>();
+
     /** Selected Sorting Algorithm **/
-    public final SortingAlgorithm algorithm = shellSort;
+    public SortingAlgorithm algorithm = selectionSort;
+    public int index = 0;
 
     public Panel() {
+
+        //algorithms.add(bogosort);
+        algorithms.add(bubbleSort);
+        algorithms.add(insertionSort);
+        algorithms.add(selectionSort);
+        algorithms.add(shellSort);
+
         instance = this;
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(new Color(4, 4, 32));
@@ -38,8 +49,23 @@ public class Panel extends JPanel {
         this.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_R) {
-                    reset();
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_R:
+                        reset();
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        if (algorithm.sorted) {
+                            startSorting();
+                        }
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        if (algorithm.sorted) {
+                            index = (index + 1) % algorithms.size();
+                            algorithm = algorithms.get(index);
+                            reset();
+                            startSorting();
+                        }
+                        break;
                 }
             }
         });
@@ -65,6 +91,9 @@ public class Panel extends JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(255, 255, 255));
+        if(algorithm.sorted){
+            g2d.setColor(new Color(0, 128, 255));
+        }
         for(int i = 0; i < ARRAY_SIZE; i++){
             g2d.fillRect(i * GRID_SIZE,HEIGHT - (array[i]) * GRID_SIZE,GRID_SIZE,(array[i]) * GRID_SIZE);
         }
@@ -76,7 +105,6 @@ public class Panel extends JPanel {
     public void reset() {
         if(algorithm.sorted){
             setup();
-            startSorting();
             repaint();
         }
     }
