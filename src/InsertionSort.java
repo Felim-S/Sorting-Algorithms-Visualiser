@@ -12,6 +12,7 @@ public class InsertionSort extends SortingAlgorithm{
                 delay();
             }
         }
+        this.sorted = true;
     }
 
     @Override
@@ -22,5 +23,6 @@ public class InsertionSort extends SortingAlgorithm{
                 delay();
             }
         }
+        this.sorted = true;
     }
 }

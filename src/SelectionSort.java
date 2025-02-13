@@ -21,6 +21,7 @@ public class SelectionSort extends SortingAlgorithm{
                 delay();
             }
         }
+        this.sorted = true;
     }
 
     @Override
@@ -40,5 +41,6 @@ public class SelectionSort extends SortingAlgorithm{
                 delay();
             }
         }
+        this.sorted = true;
     }
 }

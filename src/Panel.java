@@ -58,6 +58,7 @@ public class Panel extends JPanel {
     /* Start thread, sorting begins and is delayed at each step
      * (which step is delayed is dependent on the selected algorithm) */
     public void startSorting() {
+        algorithm.sorted = false;
         new Thread(() -> algorithm.sort(array, Comparator.comparing(Integer::intValue))).start();
     }
 
@@ -75,8 +76,10 @@ public class Panel extends JPanel {
     }
 
     public void reset() {
-        setup();
-        startSorting();
-        repaint();
+        if(algorithm.sorted){
+            setup();
+            startSorting();
+            repaint();
+        }
     }
 }

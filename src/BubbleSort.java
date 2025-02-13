@@ -17,6 +17,7 @@ public class BubbleSort extends SortingAlgorithm {
                 }
             }
         }
+        this.sorted = true;
     }
 
     @Override
@@ -32,5 +33,6 @@ public class BubbleSort extends SortingAlgorithm {
                 }
             }
         }
+        this.sorted = true;
     }
 }

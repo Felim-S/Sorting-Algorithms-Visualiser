@@ -26,6 +26,7 @@ public class ShellSort extends SortingAlgorithm{
                 input.set(j, temp);
             }
         }
+        this.sorted = true;
     }
 
     @Override
@@ -44,5 +45,6 @@ public class ShellSort extends SortingAlgorithm{
                 input[j] = temp;
             }
         }
+        this.sorted = true;
     }
 }

@@ -8,6 +8,9 @@ public abstract class SortingAlgorithm implements Comparable<SortingAlgorithm> {
     public abstract <T extends Comparable<T>> void sort(final T[] input, final Comparator<T> comparator);
     public static final int SIZE = 10000;
     public static final int DELAY = 20;
+
+    public boolean sorted = false;
+
     /**
      * Delays the sorting algorithm by a constant value (in ms)
      * in order to display the sorting algorithm step-by-step

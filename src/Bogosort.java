@@ -21,6 +21,7 @@ public class Bogosort extends SortingAlgorithm {
                 }
             }
         }
+        this.sorted = true;
     }
 
     @Override
@@ -38,5 +39,6 @@ public class Bogosort extends SortingAlgorithm {
                 }
             }
         }
+        this.sorted = true;
     }
 }
