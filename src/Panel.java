@@ -24,11 +24,12 @@ public class Panel extends JPanel {
     InsertionSort insertionSort = new InsertionSort();
     SelectionSort selectionSort = new SelectionSort();
     ShellSort shellSort = new ShellSort();
+    SleepSort sleepSort = new SleepSort();
 
     ArrayList<SortingAlgorithm> algorithms = new ArrayList<SortingAlgorithm>();
 
     /** Selected Sorting Algorithm **/
-    public SortingAlgorithm algorithm = selectionSort;
+    public SortingAlgorithm algorithm = sleepSort;
     public int index = 0;
 
     public Panel() {
@@ -38,6 +39,7 @@ public class Panel extends JPanel {
         algorithms.add(insertionSort);
         algorithms.add(selectionSort);
         algorithms.add(shellSort);
+        algorithms.add(sleepSort);
 
         instance = this;
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -55,14 +57,6 @@ public class Panel extends JPanel {
                         break;
                     case KeyEvent.VK_SPACE:
                         if (algorithm.sorted) {
-                            startSorting();
-                        }
-                        break;
-                    case KeyEvent.VK_RIGHT:
-                        if (algorithm.sorted) {
-                            index = (index + 1) % algorithms.size();
-                            algorithm = algorithms.get(index);
-                            reset();
                             startSorting();
                         }
                         break;
