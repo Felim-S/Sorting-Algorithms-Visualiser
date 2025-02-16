@@ -1,11 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Comparator;
 
-public class Panel extends JPanel {
+public class Panel extends JPanel implements ActionListener {
     /** Singleton class **/
     private static Panel instance;
 
@@ -13,8 +12,10 @@ public class Panel extends JPanel {
         return instance;
     }
 
+    public JComboBox<SortingAlgorithm> dropdown;
+
     public static final int WIDTH = 500;
-    public static final int HEIGHT = 500;
+    public static final int HEIGHT = 550;
     public static final int GRID_SIZE = 10;
     public static final int ARRAY_SIZE = WIDTH / GRID_SIZE;
     Integer[] array = new Integer[ARRAY_SIZE];
@@ -26,43 +27,22 @@ public class Panel extends JPanel {
     ShellSort shellSort = new ShellSort();
     SleepSort sleepSort = new SleepSort();
 
-    ArrayList<SortingAlgorithm> algorithms = new ArrayList<SortingAlgorithm>();
-
-    /** Selected Sorting Algorithm **/
-    public SortingAlgorithm algorithm = sleepSort;
-    public int index = 0;
+    public SortingAlgorithm[] algorithms;
+    public SortingAlgorithm algorithm;
 
     public Panel() {
-
-        //algorithms.add(bogosort);
-        algorithms.add(bubbleSort);
-        algorithms.add(insertionSort);
-        algorithms.add(selectionSort);
-        algorithms.add(shellSort);
-        algorithms.add(sleepSort);
-
         instance = this;
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(new Color(4, 4, 32));
-        setup();
-        startSorting();
 
-        this.setFocusable(true);
-        this.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                    case KeyEvent.VK_R:
-                        reset();
-                        break;
-                    case KeyEvent.VK_SPACE:
-                        if (algorithm.sorted) {
-                            startSorting();
-                        }
-                        break;
-                }
-            }
-        });
+        algorithms = new SortingAlgorithm[]{bubbleSort, insertionSort, selectionSort, shellSort, sleepSort};
+
+        dropdown = new JComboBox<SortingAlgorithm>(algorithms);
+        dropdown.addActionListener(this);
+        dropdown.setSelectedIndex(0);
+        this.add(dropdown);
+
+        setup();
     }
 
     public void setup(){
@@ -91,15 +71,24 @@ public class Panel extends JPanel {
         for(int i = 0; i < ARRAY_SIZE; i++){
             g2d.fillRect(i * GRID_SIZE,HEIGHT - (array[i]) * GRID_SIZE,GRID_SIZE,(array[i]) * GRID_SIZE);
         }
-        g2d.setColor(new Color(30, 255, 22));
-        g2d.setFont(new Font("Arial", Font.PLAIN, 50));
-        g2d.drawString(algorithm.getClass().getSimpleName(), 0, 40);
     }
 
     public void reset() {
         if(algorithm.sorted){
             setup();
             repaint();
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO
+        // Fix error when selecting a new algorithm while it's running
+        if(e.getSource() == dropdown) {
+            algorithm = (SortingAlgorithm) dropdown.getSelectedItem();
+            algorithm.sorted = true;
+            reset();
+            startSorting();
         }
     }
 }

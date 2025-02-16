@@ -55,4 +55,9 @@ public abstract class SortingAlgorithm implements Comparable<SortingAlgorithm> {
         }
         return runtimeA < runtimeB ? 1 : -1;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 }

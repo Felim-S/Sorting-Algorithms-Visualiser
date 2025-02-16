@@ -13,6 +13,7 @@ public class SelectionSort extends SortingAlgorithm{
             for(int j = i + 1; j < input.size(); j++){
                 if(input.get(j).compareTo(input.get(minIndex)) < 0){
                     minIndex = j;
+                    delay();
                 }
             }
             // If the min value has changed (is not equal to i), swap i and min
@@ -33,6 +34,7 @@ public class SelectionSort extends SortingAlgorithm{
             for(int j = i + 1; j < input.length; j++){
                 if(input[j].compareTo(input[minIndex]) < 0){
                     minIndex = j;
+                    delay();
                 }
             }
             // If the min value has changed (is not equal to i), swap i and min
