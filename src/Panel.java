@@ -39,7 +39,7 @@ public class Panel extends JPanel implements ActionListener {
 
         dropdown = new JComboBox<SortingAlgorithm>(algorithms);
         dropdown.addActionListener(this);
-        dropdown.setSelectedIndex(0);
+        dropdown.setSelectedIndex(1);
         this.add(dropdown);
 
         setup();
